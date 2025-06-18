@@ -1,11 +1,9 @@
-import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
-
-const YachtsClient = dynamic(() => import('./YachtsClient'), { ssr: false });
+import YachtsClient from './YachtsClient';
 
 export default function YachtsPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>Loading yachts...</div>}>
       <YachtsClient />
     </Suspense>
   );
