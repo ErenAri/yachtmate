@@ -1,27 +1,26 @@
 import { prisma } from '@/lib/prisma';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-type Params = {
-  params: {
-    id: string;
-  };
-};
-
-export async function PUT(req: Request, { params }: Params) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function PUT(req: NextRequest, context: any) {
+  const { id } = context.params;
   const body = await req.json();
   const { name, location, description, price, image } = body;
 
   const updated = await prisma.yacht.update({
-    where: { id: params.id },
+    where: { id },
     data: { name, location, description, price, image },
   });
 
   return NextResponse.json(updated);
 }
 
-export async function DELETE(_: Request, { params }: Params) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function DELETE(req: NextRequest, context: any) {
+  const { id } = context.params;
+
   await prisma.yacht.delete({
-    where: { id: params.id },
+    where: { id },
   });
 
   return NextResponse.json({ success: true });
