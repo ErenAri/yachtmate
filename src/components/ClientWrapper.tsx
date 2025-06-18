@@ -12,7 +12,7 @@ interface Props {
     name: string;
     location: string;
     price: number;
-    image: string;
+    image: string | null;
   }[];
 }
 
