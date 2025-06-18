@@ -4,9 +4,16 @@ import Hero from './Hero';
 import WhyChooseUs from './WhyChooseUs';
 import ContactSection from './ContactSection';
 import YachtCard from './YachtCard';
+import Link from 'next/link';
 
 interface Props {
-  yachts: any[];
+  yachts: {
+    id: string;
+    name: string;
+    location: string;
+    price: number;
+    image: string;
+  }[];
 }
 
 export default function ClientWrapper({ yachts }: Props) {
@@ -27,11 +34,9 @@ export default function ClientWrapper({ yachts }: Props) {
         </div>
 
         <div className="text-center mt-10">
-          <a href="/yachts">
-            <button className="bg-gray-800 text-white font-bold italic px-10 py-4 rounded-lg hover:bg-gray-900 transition text-lg tracking-wide">
-              View All Yachts →
-            </button>
-          </a>
+          <Link href="/yachts" className="bg-gray-800 text-white font-bold italic px-10 py-4 rounded-lg hover:bg-gray-900 transition text-lg tracking-wide">
+            View All Yachts →
+          </Link>
         </div>
       </section>
 

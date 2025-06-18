@@ -1,4 +1,5 @@
 import YachtCard from './YachtCard';
+import Link from 'next/link';
 
 interface Yacht {
   id: string;
@@ -28,12 +29,12 @@ export default function YachtList({ yachts }: YachtListProps) {
       </div>
 
       <div className="mt-12 flex justify-center">
-        <a
+        <Link
           href="/yachts"
           className="bg-blue-600 text-white font-medium px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
         >
           View All Yachts →
-        </a>
+        </Link>
       </div>
     </section>
   );

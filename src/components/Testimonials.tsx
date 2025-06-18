@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 const testimonials = [
   {
     name: 'John D.',
@@ -26,12 +28,14 @@ const Testimonials = () => {
             key={t.name}
             className="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 shadow hover:shadow-md transition"
           >
-            <img
+            <Image
               src={t.avatar}
               alt={t.name}
-              className="w-16 h-16 rounded-full mx-auto mb-4 object-cover"
+              width={64}
+              height={64}
+              className="rounded-full mx-auto mb-4 object-cover"
             />
-            <p className="text-gray-700 dark:text-gray-300 mb-4 italic">"{t.text}"</p>
+            <p className="text-gray-700 dark:text-gray-300 mb-4 italic">&quot;{t.text}&quot;</p>
             <p className="font-semibold text-gray-900 dark:text-white">{t.name}</p>
           </div>
         ))}

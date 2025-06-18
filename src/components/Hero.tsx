@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect } from 'react';
 
 export default function Hero() {
   const scrollToFleet = () => {
@@ -11,7 +10,6 @@ export default function Hero() {
 
   return (
     <section className="relative h-[90vh] w-full flex items-center justify-center overflow-hidden">
-      {/* Arka plan görseli */}
       <Image
         src="/images/hero.jpg"
         alt="Luxury Yacht"
@@ -20,10 +18,8 @@ export default function Hero() {
         className="object-cover"
       />
 
-      {/* Beyaz yarı saydam overlay */}
       <div className="absolute inset-0 bg-white/70 z-10" />
 
-      {/* İçerik */}
       <div className="relative z-20 text-center text-black px-6">
         <h1 className="text-4xl sm:text-6xl font-bold">
           Sail into Luxury with <span className="text-blue-600">YachtMate</span>
