@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "name": "Sea Breeze",
+    "price": 1200,
+    "location": "Bodrum",
+    "image": "/images/sea-breeze.jpg",
+    "description": "Luxurious yacht for 6 people, includes skipper and meals."
+  },
+  {
+    "id": "2",
+    "name": "Ocean Star",
+    "price": 980,
+    "location": "Göcek",
+    "image": "/images/ocean-star.jpg",
+    "description": "Comfortable and elegant with a great sea view deck."
+  }
+]

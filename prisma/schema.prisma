@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Yacht {
+  id          String       @id @default(uuid())
+  name        String
+  location    String
+  description String
+  price       Int
+  image       String?      // Opsiyonel, eski sistemle uyumlu kalabilir
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  images      YachtImage[] 
+}
+
+model YachtImage {
+  id        String   @id @default(uuid())
+  fileName  String
+  yacht     Yacht    @relation(fields: [yachtId], references: [id], onDelete: Cascade)
+  yachtId   String
+  createdAt DateTime @default(now())
+}
