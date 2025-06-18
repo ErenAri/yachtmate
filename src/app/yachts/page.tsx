@@ -3,7 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import YachtCard from '@/components/YachtCard';
 import Pagination from '@/components/Pagination';
-import { fetchYachts, Yacht } from '@/lib/fetchYachts';
+import { Yacht } from '@/lib/fetchYachts';
 import { useEffect, useState } from 'react';
 
 export default function AllYachtsPageClient() {
