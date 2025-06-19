@@ -22,9 +22,9 @@ export default function AdminBookingTable() {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Booking Submissions</h2>
-      <table className="w-full table-auto border-collapse border border-gray-300 text-sm">
-        <thead className="bg-gray-100">
+      
+      <table className="w-full table-auto border-collapse text-sm text-gray-900 dark:text-white bg-white dark:bg-gray-800">
+        <thead className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100">
           <tr>
             <th className="p-2 border">Name</th>
             <th className="p-2 border">Email</th>
@@ -35,7 +35,7 @@ export default function AdminBookingTable() {
         </thead>
         <tbody>
           {bookings.map((b) => (
-            <tr key={b.id} className="border-t">
+            <tr key={b.id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
               <td className="p-2 border">{b.name}</td>
               <td className="p-2 border">{b.email}</td>
               <td className="p-2 border">{b.phone}</td>
@@ -45,6 +45,7 @@ export default function AdminBookingTable() {
           ))}
         </tbody>
       </table>
+
     </div>
   );
 }
