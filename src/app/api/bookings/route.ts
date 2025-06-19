@@ -5,7 +5,8 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const BOOKINGS_PATH = path.join(process.cwd(), 'data/bookings.json');
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resendApiKey = process.env.RESEND_API_KEY;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 export async function POST(req: Request) {
   try {
@@ -23,18 +24,22 @@ export async function POST(req: Request) {
     await writeFile(BOOKINGS_PATH, JSON.stringify(bookings, null, 2));
 
     // Mail gönderimi
-    await resend.emails.send({
-      from: 'YachtMate <noreply@yachtmate.dev>', // Doğrulanmış domain adresi olmalı
-      to: 'erenari27@gmail.com',                 // Mailin ulaşacağı adres
-      subject: 'New Yacht Booking Request',
-      html: `
-        <h2>New Booking</h2>
-        <p><strong>Name:</strong> ${body.name}</p>
-        <p><strong>Email:</strong> ${body.email}</p>
-        <p><strong>Phone:</strong> ${body.phone}</p>
-        <p><strong>Message:</strong> ${body.message}</p>
-      `,
-    });
+    if (resend) {
+      await resend.emails.send({
+        from: 'YachtMate <noreply@yachtmate.dev>', // Doğrulanmış domain adresi olmalı
+        to: 'erenari27@gmail.com', // Mailin ulaşacağı adres
+        subject: 'New Yacht Booking Request',
+        html: `
+          <h2>New Booking</h2>
+          <p><strong>Name:</strong> ${body.name}</p>
+          <p><strong>Email:</strong> ${body.email}</p>
+          <p><strong>Phone:</strong> ${body.phone}</p>
+          <p><strong>Message:</strong> ${body.message}</p>
+        `,
+      });
+    } else {
+      console.warn('RESEND_API_KEY is not configured; skipping email send.');
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
