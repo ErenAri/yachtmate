@@ -41,29 +41,34 @@ export default function AdminYachtTable({ yachts }: Props) {
 
   return (
     <div className="mt-10">
-      <table className="w-full text-sm text-left text-gray-700 dark:text-gray-200">
-        <thead className="bg-gray-100 dark:bg-gray-700 text-xs uppercase">
+      <table className="w-full text-left table-auto">
+        <thead>
           <tr>
-            <th className="px-4 py-3">Name</th>
-            <th className="px-4 py-3">Location</th>
-            <th className="px-4 py-3">Price (€)</th>
-            <th className="px-4 py-3">Actions</th>
+            <th className="px-4 py-2">Name</th>
+            <th className="px-4 py-2">Location</th>
+            <th className="px-4 py-2">Price</th>
+            <th className="px-4 py-2">Actions</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+        <tbody>
           {yachts.map((yacht) => (
-            <tr key={yacht.id}>
+            <tr key={yacht.id} className="border-t border-gray-200 dark:border-gray-700">
               <td className="px-4 py-2">{yacht.name}</td>
               <td className="px-4 py-2">{yacht.location}</td>
-              <td className="px-4 py-2">€{yacht.price}</td>
-              <td className="px-4 py-2">
-                {/* Actions here (Edit/Delete buttons) */}
+              <td className="px-4 py-2">${yacht.price}</td>
+              <td className="px-4 py-2 flex gap-2">
+                <EditYachtModal yacht={{ ...yacht, image: yacht.image ?? '' }} onUpdated={handleUpdated} />
+                <button
+                  onClick={() => handleDelete(yacht.id)}
+                  className="text-red-600 hover:underline"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-
     </div>
   );
 }
